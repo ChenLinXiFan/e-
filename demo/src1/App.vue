@@ -1,11 +1,8 @@
 <template>
   <div>
-    <div class="etpt_wrap">
-      <ele-header></ele-header>
-      <mainContent></mainContent>
-      <ele-footer></ele-footer>
-    </div>
-
+    <ele-header></ele-header>
+    <mainContent></mainContent>
+    <ele-footer></ele-footer>
   </div>
 
 </template>
@@ -18,17 +15,14 @@
 // 配置组件
     components: {
       'ele-header': header,
-      'mainContent': mainContent,
-      'ele-footer': footer
+      'mainContent':mainContent,
+      'ele-footer':footer
     }
 
   }
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  @rem: 46.8rem;
-  .etpt_wrap{
-    width: 750/@rem;
-  }
+
 
 </style>
