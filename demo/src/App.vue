@@ -4,6 +4,8 @@
       <ele-header></ele-header>
       <mainContent></mainContent>
       <ele-footer></ele-footer>
+
+      <router-view></router-view>
     </div>
 
   </div>
@@ -28,6 +30,7 @@
 <style lang="less" rel="stylesheet/less">
   @rem: 46.8rem;
   .etpt_wrap{
+    position: relative;
     width: 750/@rem;
   }
 

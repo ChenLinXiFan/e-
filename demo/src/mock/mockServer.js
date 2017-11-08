@@ -10,7 +10,7 @@ Mock.mock('/api/datas', {
   code: 0,
   data: data.datas
 })
-Mock.mock('/api/surpriseday', {
+Mock.mock('/api/surprise', {
   code: 0,
-  data: data.surpriseday
+  data: data.surprise
 })

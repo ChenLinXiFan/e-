@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="banner_wrap">
-      <div class="banner_title" v-for="(title,index) in bannerTitle" :key="index">
-        <img :src= "title.image" alt="">
+      <div class="banner_title" >
+        <img :src= "bannerTitle.image" alt="">
       </div>
       <div class="banner_item">
         <mt-swipe :auto="4000">
@@ -13,8 +13,8 @@
           </mt-swipe-item>
         </mt-swipe>
       </div>
-      <div class="banner_bag" v-for="(bag,index) in bannerBag" :key="index">
-        <img :src="bag.image" alt="">
+      <div class="banner_bag">
+        <img :src="bannerBag.image" alt="">
       </div>
     </div>
   </div>

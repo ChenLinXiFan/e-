@@ -15,18 +15,18 @@
           <span>:</span>
           <span>00</span>
         </div>
-        <div class="more_icon">
-          <a href="javascript:;">
+        <router-link to="/surpriseitem">
+          <div class="more_icon">
             <img :src="moreicon.image" alt="">
-          </a>
-        </div>
+          </div>
+        </router-link>
       </div>
-      <div class="surprisegoods">
+      <div class="surprisegoods" ref="surprisegoods">
         <ul class="list">
           <li v-for="(item,index) in goods" :key="index">
             <div>
               <a href="javascript:;">
-                <img :src="item.image.image" alt="">
+                <img :src="item.image" alt="">
               </a>
             </div>
             <div>
@@ -43,25 +43,39 @@
 
 <script>
   import axios from 'axios'
+  import BScroll from 'better-scroll'
   export default{
-    data (){
+    data () {
       return {
         surprise: {},
         goods: {},
         moreicon: {}
       }
     },
-    mounted (){
-      axios.get('./api/surpriseday')
+    mounted () {
+      axios.get('/api/surprise')
         .then(response => {
           const result = response.data
-          if(result.code === 0){
-            this.surprise = result.data.surprise
-            this.moreicon = this.surprise.right_image
+          if (result.code === 0) {
+            this.surprise = result.data
+            //console.log(this.surprise)
+            this.moreicon = this.surprise.rightimage
             this.goods = this.surprise.goods
-            console.log(this.goods)
+
+            // 将回调延迟到下次 DOM 更新循环之后执行
+            this.$nextTick(() => {
+              this._initScroll()
+            })
           }
         })
+    },
+    methods: {
+      _initScroll () {
+        new BScroll(this.$refs.surprisegoods, {
+          scrollX:true,
+          click: true //触发点击
+        })
+      }
     }
   }
 </script>
@@ -71,6 +85,7 @@
   .surpriseday_wrap{
     width: 100%;
     .surprise{
+      position: relative;
       width: 750/@rem;
       height: 120/@rem;
       padding: 20/@rem;
@@ -90,18 +105,21 @@
         font-size: 26/@rem;
         margin-top: 2/@rem;
         margin-left: 20/@rem;
+        line-height: 40/@rem;
+        white-space: nowrap;
       }
       .suprice_daytime{
         width: 165/@rem;
         height: 80/@rem;
-        font-size: 28/@rem;
+        font-size: 26/@rem;
         margin-top: 4/@rem;
-        margin-left: 40/@rem;
+        margin-left: 10/@rem;
+        white-space: nowrap;
         span{
           &:nth-child(odd){
             display: inline-block;
-            width: 42/@rem;
-            height: 42/@rem;
+            width: 30/@rem;
+            height: 30/@rem;
             border: 2/@rem solid #ddd;
             padding: 2/@rem 4/@rem;
             font-size: 26/@rem;
@@ -116,8 +134,9 @@
       .more_icon{
         width: 135/@rem;
         height: 80/@rem;
-        margin-top: -20/@rem;
-        margin-left: 50/@rem;
+        position: absolute;
+        top: 4/@rem;
+        right: -16/@rem;
         img{
           width: 100%;
           height: 100%;

@@ -10,14 +10,14 @@
           </li>
         </ul>
       </div>
-      <div class="saletitle" v-for="(title,index) in saletitle" :key="index">
+      <div class="saletitle" >
         <a href="javascript:;">
-          <img :src="title.image" alt="">
+          <img :src="saletitle.image" alt="">
         </a>
       </div>
-      <div class="saleitem" v-for="(item,index) in saleitem" :key="index">
+      <div class="saleitem" >
         <a href="javascript:;">
-          <img :src="item.image" alt="">
+          <img :src="saleitem.image" alt="">
         </a>
       </div>
     </div>
